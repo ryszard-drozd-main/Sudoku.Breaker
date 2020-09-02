@@ -94,12 +94,12 @@ namespace Sudoku.Breaker
             }
         }
 
-        private string Print(IField fld)
+        private string Print(IField fld, int cnt)
         {
             var builder = new StringBuilder();
             builder.Append("[");
-            for(int i = 1; i <= 9; i++)
-                if(fld.CouldBe[i])
+            for (int i = 1; i <= cnt; i++)
+                if (fld.CouldBe[i])
                     builder.Append(i);
             builder.Append("]");
             return builder.ToString();
@@ -114,7 +114,7 @@ namespace Sudoku.Breaker
                 {
                     var fld = accessor.GetField(board, w, k);
                     var v = fld.RealValue;
-                    string c = v == EmptyField.Empty ? Print(fld) : chars[v];
+                    string c = v == EmptyField.Empty ? Print(fld, board.Squares.Length) : chars[v];
                     Console.Write(c);
                 }
                 Console.WriteLine();
