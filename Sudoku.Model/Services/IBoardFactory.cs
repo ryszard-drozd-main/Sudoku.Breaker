@@ -2,8 +2,8 @@
 
 namespace Sudoku.Model.Services
 {
-    public interface ISquareRefresh
+    public interface IBoardFactory
     {
-        void Refresh(IBoard square);
+        IBoard FromString(string str);
     }
 }

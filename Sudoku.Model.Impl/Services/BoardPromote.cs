@@ -4,9 +4,9 @@ using Sudoku.Model.Services;
 
 namespace Sudoku.Model.Impl.Services
 {
-    public class SquarePromote : ISquarePromote
+    public class BoardPromote : IBoardPromote
     {
-        private readonly ISquarePromote[] _promotes = new ISquarePromote[] {
+        private readonly IBoardPromote[] _promotes = new IBoardPromote[] {
             new PromoteSingle()
             , new PromoteSingleIn()
         };

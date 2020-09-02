@@ -4,7 +4,7 @@ using Sudoku.Model.Services;
 
 namespace Sudoku.Model.Impl.Services.Promotes
 {
-    internal class PromoteSingle : ISquarePromote
+    internal class PromoteSingle : IBoardPromote
     {
         public bool Promote(IBoard square)
         {

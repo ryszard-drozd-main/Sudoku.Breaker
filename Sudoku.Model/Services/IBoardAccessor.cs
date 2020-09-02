@@ -2,7 +2,7 @@
 
 namespace Sudoku.Model.Services
 {
-    public interface ISquareAccessor
+    public interface IBoardAccessor
     {
         IField GetField(IBoard square, int row, int col);
     }

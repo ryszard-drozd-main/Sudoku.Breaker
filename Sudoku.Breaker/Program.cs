@@ -68,13 +68,13 @@ namespace Sudoku.Breaker
                                 "8,0=1 8,3=3 8,7=8"; // 7 wystepuje w (0,0) i (0,8)
         private void Run(string[] args)
         {
-            var accessor = new SquareAccessor();
-            var fieldRefresh = new SquareRefresh(accessor);
-            var promote = new SquarePromote();
-            var square = new SquareFactory(accessor, fieldRefresh).FromString(sudoku03);
-            var validator = new SquareValidator(accessor);
-            Print(square);
-            var vr = validator.Validate(square);
+            var accessor = new BoardAccessor();
+            var boardRefresh = new BoardRefresh(accessor);
+            var promote = new BoardPromote();
+            var board = new BoardFactory(accessor, boardRefresh).FromString(sudoku03);
+            var validator = new BoardValidator(accessor);
+            Print(board);
+            var vr = validator.Validate(board);
             if (!vr.Ok)
             {
                 Console.WriteLine();
@@ -83,12 +83,12 @@ namespace Sudoku.Breaker
             else
             {
                 int promotes = 0;
-                while (promote.Promote(square))
+                while (promote.Promote(board))
                 {
                     promotes++;
                     Console.WriteLine($"-- krok {promotes} --");
-                    fieldRefresh.Refresh(square);
-                    Print(square);
+                    boardRefresh.Refresh(board);
+                    Print(board);
                 }
                 Console.WriteLine($"Rozwiązane po {promotes} krokach");
             }
@@ -104,15 +104,15 @@ namespace Sudoku.Breaker
             builder.Append("]");
             return builder.ToString();
         }
-        private void Print(IBoard square)
+        private void Print(IBoard board)
         {
             var chars = new string[] { ".","1","2","3","4","5","6","7","8","9"};
-            var accessor = new SquareAccessor();
-            for (int w = 0; w < 9; w++)
+            var accessor = new BoardAccessor();
+            for (int w = 0; w < board.Squares.Length; w++)
             {
-                for (int k = 0; k < 9; k++)
+                for (int k = 0; k < board.Squares.Length; k++)
                 {
-                    var fld = accessor.GetField(square, w, k);
+                    var fld = accessor.GetField(board, w, k);
                     var v = fld.RealValue;
                     string c = v == EmptyField.Empty ? Print(fld) : chars[v];
                     Console.Write(c);

@@ -2,8 +2,8 @@
 
 namespace Sudoku.Model.Services
 {
-    public interface ISquarePromote
+    public interface IBoardRefresh
     {
-        bool Promote(IBoard square);
+        void Refresh(IBoard square);
     }
 }

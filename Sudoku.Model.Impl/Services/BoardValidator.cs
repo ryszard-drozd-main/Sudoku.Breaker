@@ -1,28 +1,27 @@
 ﻿using Sudoku.Model.Dto;
-using Sudoku.Model.Impl.Dto;
 using Sudoku.Model.Impl.Dto.Validator;
 using Sudoku.Model.Services;
 using System;
 
 namespace Sudoku.Model.Impl.Services
 {
-    public class SquareValidator : ISquareValidator
+    public class BoardValidator : IBoardValidator
     {
-        private readonly ISquareAccessor _squareAccessor;
+        private readonly IBoardAccessor _squareAccessor;
 
-        public SquareValidator(ISquareAccessor squareAccessor)
+        public BoardValidator(IBoardAccessor squareAccessor)
         {
             _squareAccessor = squareAccessor;
         }
-        public ISquareValidatorResult Validate(IBoard square)
+        public IBoardValidatorResult Validate(IBoard board)
         {
-            ISquareValidatorResult result=null;
+            IBoardValidatorResult result=null;
             int s=0;
             int row=0;
             int col=0;
             ISquare ss=null;
 
-            Func<byte,int,bool> existInSmallSquare = (fvalue,findex) => {
+            Func<byte,int,bool> existInSquare = (fvalue,findex) => {
                 for (int f = 0; f < ss.Fields.Length; f++)
                 {
                     var field = ss.Fields[f];
@@ -30,7 +29,7 @@ namespace Sudoku.Model.Impl.Services
                     {
                         var r = (3 * (s / 3)) + (f / 3);
                         var c = (3 * (s % 3)) + (f % 3);
-                        result = new SquareValidatorResult(fvalue, row, col, r, c);
+                        result = new BoardValidatorResult(fvalue, row, col, r, c);
                         return true;
                     }
                 }
@@ -38,14 +37,14 @@ namespace Sudoku.Model.Impl.Services
             };
 
             Func<byte,bool> existInRow = (fvalue) => {
-                for (int c = 0; c < square.Squares.Length; c++)
+                for (int c = 0; c < board.Squares.Length; c++)
                 {
                     if (c == col)
                         continue;
-                    var field = _squareAccessor.GetField(square, row, c);
+                    var field = _squareAccessor.GetField(board, row, c);
                     if (field.RealValue != EmptyField.Empty && field.RealValue == fvalue)
                     {
-                        result = new SquareValidatorResult(fvalue, row, col, row, c);
+                        result = new BoardValidatorResult(fvalue, row, col, row, c);
                         return true;
                     }
                 }
@@ -53,23 +52,23 @@ namespace Sudoku.Model.Impl.Services
             };
 
             Func<byte, bool> existInCol = (fvalue) => {
-                for (int r = 0; r < square.Squares.Length; r++)
+                for (int r = 0; r < board.Squares.Length; r++)
                 {
                     if (r == row)
                         continue;
-                    var field = _squareAccessor.GetField(square, r, col);
+                    var field = _squareAccessor.GetField(board, r, col);
                     if (field.RealValue != EmptyField.Empty && field.RealValue == fvalue)
                     {
-                        result = new SquareValidatorResult(fvalue, row, col, r, col);
+                        result = new BoardValidatorResult(fvalue, row, col, r, col);
                         return true;
                     }
                 }
                 return false;
             };
 
-            for (s = 0; s < square.Squares.Length; s++)
+            for (s = 0; s < board.Squares.Length; s++)
             {
-                ss = square.Squares[s];
+                ss = board.Squares[s];
 
                 for (int f = 0; f < ss.Fields.Length; f++)
                 {
@@ -78,7 +77,7 @@ namespace Sudoku.Model.Impl.Services
                         continue;
                     row = (3 * (s / 3)) + (f / 3);
                     col = (3 * (s % 3)) + (f % 3);
-                    if(existInSmallSquare(fld.RealValue,f))
+                    if(existInSquare(fld.RealValue,f))
                     {
                         return result;
                     }
@@ -93,7 +92,7 @@ namespace Sudoku.Model.Impl.Services
                 }
             }
 
-            return new SquareValidatorResult();
+            return new BoardValidatorResult();
         }
     }
 }

@@ -3,7 +3,7 @@ using Sudoku.Model.Services;
 
 namespace Sudoku.Model.Impl.Services
 {
-    public class SquareAccessor : ISquareAccessor
+    public class BoardAccessor : IBoardAccessor
     {
         public IField GetField(IBoard square, int row, int col)
         {

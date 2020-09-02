@@ -2,14 +2,14 @@
 
 namespace Sudoku.Model.Impl.Dto.Validator
 {
-    internal class SquareValidatorResult : ISquareValidatorResult
+    internal class BoardValidatorResult : IBoardValidatorResult
     {
-        public SquareValidatorResult()
+        public BoardValidatorResult()
         {
             Ok = true;
             Conflict = null;
         }
-        public SquareValidatorResult(byte realValue, int firstRow, int fistCol, int secondRow, int secondCol)
+        public BoardValidatorResult(byte realValue, int firstRow, int fistCol, int secondRow, int secondCol)
         {
             Ok = false;
             Conflict = new Conflict(realValue, firstRow, fistCol, secondRow, secondCol);

@@ -1,6 +1,6 @@
 ﻿namespace Sudoku.Model.Dto
 {
-    public interface ISquareValidatorResult
+    public interface IBoardValidatorResult
     {
         bool Ok { get; }
         IConflict Conflict { get; }

@@ -2,8 +2,8 @@
 
 namespace Sudoku.Model.Services
 {
-    public interface ISquareFactory
+    public interface IBoardPromote
     {
-        IBoard FromString(string str);
+        bool Promote(IBoard square);
     }
 }

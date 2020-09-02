@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace Sudoku.Model.Impl.Services
 {
-    public class SquareFactory : ISquareFactory
+    public class BoardFactory : IBoardFactory
     {
-        private readonly ISquareAccessor _squareAccessor;
-        private readonly ISquareRefresh _fieldRefreshCouldBe;
+        private readonly IBoardAccessor _squareAccessor;
+        private readonly IBoardRefresh _fieldRefreshCouldBe;
 
-        public SquareFactory(ISquareAccessor squareAccessor, ISquareRefresh fieldRefreshCouldBe)
+        public BoardFactory(IBoardAccessor squareAccessor, IBoardRefresh fieldRefreshCouldBe)
         {
             _squareAccessor = squareAccessor;
             _fieldRefreshCouldBe = fieldRefreshCouldBe;
