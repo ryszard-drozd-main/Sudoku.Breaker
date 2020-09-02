@@ -92,14 +92,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sudoku.Breaker.ImageOcr.Impl\Sudoku.Breaker.ImageOcr.Impl.csproj">
-      <Project>{f34f3eed-1588-455a-8922-81d499145f2c}</Project>
-      <Name>Sudoku.Breaker.ImageOcr.Impl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sudoku.Breaker.ImageOcr\Sudoku.Breaker.ImageOcr.csproj">
-      <Project>{689ab2ba-2d55-4bea-a5da-dbe88b53b23c}</Project>
-      <Name>Sudoku.Breaker.ImageOcr</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sudoku.Model.Impl\Sudoku.Model.Impl.csproj">
       <Project>{7DD4D8BA-C982-47A9-B6A2-351C0C455A3F}</Project>
       <Name>Sudoku.Model.Impl</Name>

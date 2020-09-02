@@ -1,5 +1,4 @@
-﻿using Sudoku.Breaker.ImageOcr.Impl.Services;
-using Sudoku.Breaker.ImageOcrForm.Model;
+﻿using Sudoku.Breaker.ImageOcrForm.Model;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -33,12 +32,12 @@ namespace Sudoku.Breaker.ImageOcrForm
         {
             if(_imageCtx.Bounds.Width>0 && _imageCtx.Bounds.Height>0)
             {
-                var engine = new TesseractProcessImage();
-                using (var g = pictureBoxSrc.CreateGraphics())
-                {
-                    var result = engine.Process(_imageCtx.FileName, _imageCtx.Bounds, g);
-                    labelResult.Text = result;
-                }
+                //var engine = new TesseractProcessImage();
+                //using (var g = pictureBoxSrc.CreateGraphics())
+                //{
+                //    var result = engine.Process(_imageCtx.FileName, _imageCtx.Bounds, g);
+                //    labelResult.Text = result;
+                //}
             }
         }
 
